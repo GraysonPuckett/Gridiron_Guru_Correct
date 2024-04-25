@@ -1,0 +1,91 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
+
+/* Root variable definitions for theme colors, fonts, etc. */
+:root {
+    --primary-color: #fff; /* Main content background color */
+    --secondary-color: #005f73; /* Navbar background color for contrast */
+    --footer-background-color: #15bebe; /* Semi-transparent blue for footer background */
+    --navbar-text-color: #000; /* White text color for navbar for legibility */
+    --footer-text-color: #000; /* White text color for footer for legibility */
+    --btn-hover-color: #e0e0e0; /* Light grey for button hover, adjust as needed */
+    --logo-height: 150px; /* Logo height, adjustable for responsive design */
+}
+
+/* Body styling */
+body {
+    margin: 0;
+    padding-top: calc(var(--logo-height) + 10px); /* Space for fixed navbar and logo */
+    background-color: var(--primary-color); /* Dynamic primary color */
+    color: #333; /* Default text color, ensures contrast */
+    font-family: Arial, sans-serif; /* Default font family */
+}
+
+.navbar .navbar-brand {
+    color: var(--navbar-text-color) !important;
+    margin-left: auto; /* Move the header text to the right */
+    position: relative; /* Add relative positioning to contain the logo */
+}
+
+.navbar {
+    background-color: var(--secondary-color); /* Dynamic secondary color for navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; /* Ensures navbar extends full width */
+    z-index: 1050; /* Ensure navbar is above other content */
+    height: var(--logo-height) + 20px; /* Adjust navbar height based on logo height */
+}
+
+.navbar .navbar-brand, .navbar .navbar-nav .nav-link {
+    color: var(--navbar-text-color) !important; /* Ensure text is legible against navbar background */
+}
+
+.gridiron-guru-logo {
+    position: absolute;
+    top: 10px; /* Slight offset from top for visual padding */
+    left: 10px; /* Slight offset from left for visual padding */
+    height: var(--logo-height); /* Responsive logo height, ensure this is defined in :root */
+    z-index: 1060; /* Ensure logo is above navbar content */
+}
+
+/* Footer styling */
+.footer {
+    background-color: var(--footer-background-color); /* Dynamic footer background color */
+    color: var(--footer-text-color); /* Dynamic footer text color */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+/* Button customizations for interactivity */
+.btn-custom {
+    background-color: var(--primary-color); /* Use primary color for button background */
+    color: var(--navbar-text-color); /* Contrast text color */
+    border: none; /* Remove default border */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn-custom:hover {
+    background-color: var(--btn-hover-color); /* Hover color change */
+    color: #fff; /* Maintain white text on hover */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        min-height: calc(var(--logo-height) + 20px); /* Adjust navbar height on smaller screens */
+    }
+
+    .gridiron-guru-logo {
+        height: calc(var(--logo-height) - 90px); /* Reduce logo height for smaller screens */
+    }
+
+    body {
+        padding-top: calc(var(--logo-height) + 130px); /* Increase padding to accommodate smaller navbar and logo */
+    }
+}

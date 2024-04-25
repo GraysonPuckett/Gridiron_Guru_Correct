@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Fantasy Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Fantasy Dashboard</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <select name="year" id="year" class="form-control">
+                {% for year in range(2020, 2025) %}
+                <option value="{{ year }}" {% if year|string == selected_year %} selected {% endif %}>{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="week">Week:</label>
+            <select name="week" id="week" class="form-control">
+                {% for week in range(1, 18) %}
+                <option value="{{ week }}" {% if week|string == selected_week %} selected {% endif %}>{{ week }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <select name="position" id="position" class="form-control">
+                {% for pos in ["All", "QB", "RB", "WR", "TE", "K"] %}
+                <option value="{{ pos }}" {% if pos == selected_position %} selected {% endif %}>{{ pos }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Fetch Data</button>
+    </form>
+    {% if data %}
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>PlayerID</th>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Position</th>
+                <th>Fantasy Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in data %}
+            <tr>
+                <td>{{ player['PlayerID'] }}</td>
+                <td>{{ player['Name'] }}</td>
+                <td>{{ player['Team'] }}</td>
+                <td>{{ player['Position'] }}</td>
+                <td>{{ player['FantasyPoints'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

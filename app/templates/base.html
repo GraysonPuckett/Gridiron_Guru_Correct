@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gridiron Guru{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS from CDN for reliability -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons from CDN -->
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/mytheme.css') }}?v=1.4" rel="stylesheet">
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <img src="{{ url_for('static', filename='images/Gridiron Guru.png') }}" alt="Gridiron Guru Logo" class="gridiron-guru-logo">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Gridiron Guru</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_bp.index') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_bp.about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_bp.contact') }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_bp.ww') }}">Waiver Watchlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('fantasy_bp.fantasy') }}">Fantasy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('core_bp.teams') }}">Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('core_bp.standings') }}">Standings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('core_bp.players') }}">Players</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('mock_draft_bp.mock_draft') }}">Fantasy Draft Mock</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+      <!-- Theme Selector -->
+    <div class="theme-selector-container" style="padding-top: 100px; text-align: center;">
+        <select id="theme-selector" onchange="handleThemeChange(this)">
+            <option value="" disabled selected>Select a Team Theme</option>
+            <option value="Bears">Bears</option>
+            <option value="Bengals">Bengals</option>
+            <option value="Bills">Bills</option>
+            <option value="Broncos">Broncos</option>
+            <option value="Browns">Browns</option>
+            <option value="Buccaneers">Buccaneers</option>
+            <option value="Cardinals">Cardinals</option>
+            <option value="Chargers">Chargers</option>
+            <option value="Chiefs">Chiefs</option>
+            <option value="Colts">Colts</option>
+            <option value="Commanders">Commanders</option>
+            <option value="Cowboys">Cowboys</option>
+            <option value="Dolphins">Dolphins</option>
+            <option value="Eagles">Eagles</option>
+            <option value="Falcons">Falcons</option>
+            <option value="49ers">49ers</option>
+            <option value="Giants">Giants</option>
+            <option value="Jaguars">Jaguars</option>
+            <option value="Jets">Jets</option>
+            <option value="Lions">Lions</option>
+            <option value="Packers">Packers</option>
+            <option value="Panthers">Panthers</option>
+            <option value="Patriots">Patriots</option>
+            <option value="Raiders">Raiders</option>
+            <option value="Rams">Rams</option>
+            <option value="Ravens">Ravens</option>
+            <option value="Saints">Saints</option>
+            <option value="Seahawks">Seahawks</option>
+            <option value="Steelers">Steelers</option>
+            <option value="Texans">Texans</option>
+            <option value="Titans">Titans</option>
+            <option value="Vikings">Vikings</option>
+        </select>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Gridiron Guru © 2024
+    </footer>
+
+    <!-- Bootstrap and jQuery scripts from CDN for reliability -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for theme handling -->
+    <script>
+        function handleThemeChange(selectElement) {
+            if (selectElement.value) {
+                changeTheme(selectElement.value); // Assume this function is defined in mytheme.js
+                // Immediately disable and optionally remove the placeholder
+                selectElement.options[0].disabled = true;
+                selectElement.remove(0);
+            }
+        }
+    </script>
+    <!-- Link to mytheme.js where changeTheme function is defined -->
+    <script src="{{ url_for('static', filename='js/mytheme.js') }}?v=1.4"></script>
+</body>
+</html>

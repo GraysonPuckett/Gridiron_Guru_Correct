@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Team Information</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Team ID</th>
+                <th>Team Name</th>
+                <th>City</th>
+                <th>Conference</th>
+                <th>Division</th>
+                <th>Bye Week</th>
+                <th>Colors</th>
+                <th>Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams_data %}
+            <tr>
+                <td>{{ team.TeamID }}</td>
+                <td>{{ team.Name }}</td>
+                <td>{{ team.City }}</td>
+                <td>{{ team.Conference }}</td>
+                <td>{{ team.Division }}</td>
+                <td>{{ team.ByeWeek }}</td>
+                <td>{{ team.PrimaryColor }}, {{ team.SecondaryColor }}</td>
+                <td><img src="{{ team.WikipediaLogoUrl }}" alt="Team Logo" style="width: 50px;"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

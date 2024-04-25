@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Players{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Players</h2>
+    <form method="get">
+        <div class="form-group">
+            <label for="team">Team:</label>
+            <select class="form-control" id="team" name="team">
+                <option value="">All Teams</option>
+                {% for team in teams %}
+                <option value="{{ team }}" {% if team == request.args.get('team') %}selected{% endif %}>{{ team }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <select class="form-control" id="position" name="position">
+                <option value="">All Positions</option>
+                {% for position in positions %}
+                <option value="{{ position }}" {% if position == request.args.get('position') %}selected{% endif %}>{{ position }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Player ID</th>
+                <th>Team</th>
+                <th>Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>BirthDate</th>
+                <th>College</th>
+                <th>Experience</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players_data %}
+            <tr>
+                <td>{{ player['PlayerID'] }}</td>
+                <td>{{ player['Team'] }}</td>
+                <td>{{ player['Number'] }}</td>
+                <td>{{ player['FirstName'] }}</td>
+                <td>{{ player['LastName'] }}</td>
+                <td>{{ player['Position'] }}</td>
+                <td>{{ player['Height'] }}</td>
+                <td>{{ player['Weight'] }}</td>
+                <td>{{ player['BirthDate'] }}</td>
+                <td>{{ player['College'] }}</td>
+                <td>{{ player['Experience'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="11">No players found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

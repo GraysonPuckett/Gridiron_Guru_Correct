@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>NFL Standings</h1>
+    <form method="get" action="{{ url_for('core_bp.standings') }}">
+        <div class="form-row">
+            <div class="col">
+                <select name="conference" class="form-control" onchange="this.form.submit()">
+                    <option value="All">All Conferences</option>
+                    <option value="AFC" {{ 'selected' if conference_filter == 'AFC' }}>AFC</option>
+                    <option value="NFC" {{ 'selected' if conference_filter == 'NFC' }}>NFC</option>
+                </select>
+            </div>
+            <div class="col">
+                <select name="division" class="form-control" onchange="this.form.submit()">
+                    <option value="All">All Divisions</option>
+                    <option value="North" {{ 'selected' if division_filter == 'North' }}>North</option>
+                    <option value="South" {{ 'selected' if division_filter == 'South' }}>South</option>
+                    <option value="East" {{ 'selected' if division_filter == 'East' }}>East</option>
+                    <option value="West" {{ 'selected' if division_filter == 'West' }}>West</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Ties</th>
+                <th>Points For</th>
+                <th>Points Against</th>
+                <th>Conference</th>
+                <th>Division</th>
+                <th>Conference Rank</th>
+                <th>Division Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in standings %}
+            <tr>
+                <td>{{ item.Team }}</td>
+                <td>{{ item.Wins }}</td>
+                <td>{{ item.Losses }}</td>
+                <td>{{ item.Ties }}</td>
+                <td>{{ item.PointsFor }}</td>
+                <td>{{ item.PointsAgainst }}</td>
+                <td>{{ item.Conference }}</td>
+                <td>{{ item.Division }}</td>
+                <td>{{ item.ConferenceRank }}</td>
+                <td>{{ item.DivisionRank }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

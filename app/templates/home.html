@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<!-- Ticker Section -->
+<div class="ticker-container" style="width: 100%; text-align: center; margin-top: 20px;">
+    <h1 style="font-size: 4rem; font-weight: bold; text-transform: uppercase;">
+        Welcome to Gridiron Guru! Happy you are here! 
+    </h1>
+    <!-- Image Section -->
+    <img src="{{ url_for('static', filename='images/NFL.png') }}" alt="NFL Logo" style="margin-top: 20px; max-width: 100%; height: auto;">
+</div>
+
+<!-- Your existing home page content here -->
+{% endblock %}
